@@ -1,11 +1,11 @@
-// app.js - Đọc từ Google Sheet (opensheet), viết qua Google Apps Script Web App
+// app.js - Đọc từ Google Sheet, viết qua Apps Script
 
 const SHEET_ID = "19GE_C8BDBeNWo-zhVPAC-4Ol7sVZx3-zAiMx34fB0CY";
 const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbyNe1rbHHr3L2HsYEeTVlJjWEPRovbOKufaUC1-j7r-GpZHwN4ysXn3McGkIqqiW_Gkow/exec";
 
 async function getArticles() {
   try {
-    const res = await fetch(`https://opensheet.elk.sh/${SHEET_ID}/Sheet1`);
+    const res = await fetch(`https://opensheet.elk.sh/${SHEET_ID}/1?ts=${Date.now()}`);
     const data = await res.json();
     return data.map(row => ({
       id: row.id || Date.now().toString(),
@@ -65,6 +65,7 @@ async function showDetailPage(id, containerId) {
 }
 
 let editId = null;
+
 async function saveArticle() {
   const title = document.getElementById("newTitle").value.trim();
   const image = document.getElementById("newImage").value.trim();
@@ -82,7 +83,6 @@ async function saveArticle() {
   try {
     await fetch(SCRIPT_URL, {
       method: "POST",
-      mode: "no-cors",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(payload)
     });
@@ -145,8 +145,19 @@ async function editArticle(id) {
   window.scrollTo({ top: 0, behavior: 'smooth' });
 }
 
-function deleteArticle(id) {
-  alert("Để xóa bài, hãy vào Google Sheet xóa hàng tương ứng (id: " + id + ")");
+async function deleteArticle(id) {
+  if (!confirm("Xác nhận xóa?")) return;
+  try {
+    await fetch(SCRIPT_URL, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ action: "delete", id })
+    });
+    alert("Xóa thành công!");
+    showAdminArticles("adminList");
+  } catch (err) {
+    alert("Lỗi xóa: " + err.message);
+  }
 }
 
 async function searchArticles() {
@@ -198,18 +209,3 @@ function escapeHtml(str) {
 function nl2brEscape(text) {
   return escapeHtml(text).replace(/\n/g, "<br>");
 }
-async function deleteArticle(id) {
-  if (!confirm("Xác nhận xóa?")) return;
-
-  try {
-    await fetch(SCRIPT_URL, {
-      method: "POST",
-      body: JSON.stringify({ action: "delete", id: id })
-    });
-    alert("Xóa thành công!");
-    showAdminArticles("adminList");
-  } catch (err) {
-    alert("Lỗi: " + err.message);
-  }
-
-
