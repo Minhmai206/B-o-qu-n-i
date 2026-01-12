@@ -1,5 +1,3 @@
-// app.js - Đọc từ Google Sheet, viết qua Apps Script
-
 const SHEET_ID = "19GE_C8BDBeNWo-zhVPAC-4Ol7sVZx3-zAiMx34fB0CY";
 const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbyNe1rbHHr3L2HsYEeTVlJjWEPRovbOKufaUC1-j7r-GpZHwN4ysXn3McGkIqqiW_Gkow/exec";
 
@@ -91,7 +89,7 @@ async function saveArticle() {
     editId = null;
     showAdminArticles("adminList");
   } catch (err) {
-    alert("Lỗi khi lưu: " + err.message);
+    alert("Lỗi lưu: " + err.message);
   }
 }
 
