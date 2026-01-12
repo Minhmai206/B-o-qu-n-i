@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <title>Báo Quân đội nhân dân điện tử</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="top-header">
+    <div class="flag-bg">
+      <div class="logo">
+        <span class="title">Quân đội nhân dân Việt Nam</span>
+      </div>
+      <p class="slogan">Trung Đoàn Thủ Đô</p>
+    </div>
+    <nav class="menu">
+      <a href="index.html">Trang chủ</a>
+      <a href="#">Chính trị</a>
+      <a href="#">Quân sự</a>
+      <a href="#">Quốc tế</a>
+      <a href="#">Văn hóa</a>
+    </nav>
+  </header>
+
+  <div class="banner">
+    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRDegXWq2A2M96pBVRmJV0FPkhWRMjEGnizZQ&s" alt="Banner">
+  </div>
+
+  <div class="container">
+    <input type="text" id="searchBox" placeholder="🔍 Tìm kiếm bài viết..." oninput="searchArticles()">
+    <select id="categoryFilter" onchange="filterArticles()">
+      <option value="all">-- Tất cả chuyên mục --</option>
+      <option value="Chính trị">Chính trị</option>
+      <option value="Quân sự">Quân sự</option>
+      <option value="Quốc tế">Quốc tế</option>
+      <option value="Văn hóa">Văn hóa</option>
+    </select>
+  </div>
+
+  <main class="main container" id="news-grid"></main>
+
+  <script src="app.js"></script>
+  <script> showArticlesGrid("news-grid"); </script>
+</body>
+</html>
