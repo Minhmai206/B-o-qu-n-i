@@ -1,5 +1,5 @@
 const SHEET_ID = "19GE_C8BDBeNWo-zhVPAC-4Ol7sVZx3-zAiMx34fB0CY";
-const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbyNe1rbHHr3L2HsYEeTVlJjWEPRovbOKufaUC1-j7r-GpZHwN4ysXn3McGkIqqiW_Gkow/exec";
+const SCRIPT_URL = https://script.google.com/macros/s/AKfycbzrMnXUS5TY79-bMFeoM8WI9cB92XMKuVIJ34h2Ua16tc3ujJmgt28QslxeRRlcKljXjQ/exec";
 
 async function getArticles() {
   try {
@@ -207,3 +207,4 @@ function escapeHtml(str) {
 function nl2brEscape(text) {
   return escapeHtml(text).replace(/\n/g, "<br>");
 }
+
