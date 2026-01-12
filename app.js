@@ -211,4 +211,6 @@ async function deleteArticle(id) {
   } catch (err) {
     alert("Lỗi: " + err.message);
   }
+
 }
+const res = await fetch(`https://opensheet.elk.sh/${SHEET_ID}/Sheet1?ts=${Date.now()}`);
